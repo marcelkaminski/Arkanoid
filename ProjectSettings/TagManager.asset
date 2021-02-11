@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bottom
+  - Brick
+  - ExtraLifePowerup
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 845768857
+    locked: 0
+  - name: Paddle
+    uniqueID: 204190105
+    locked: 0
+  - name: Ball
+    uniqueID: 2049633431
+    locked: 0
+  - name: Brick
+    uniqueID: 951427713
+    locked: 0
+  - name: Particle
+    uniqueID: 1432104007
+    locked: 0
