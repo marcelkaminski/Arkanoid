@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public int lives;
     public int score;
     public Text scoreText;
-    public Text livesText;
     public Text highScoreText;
     public bool gameOver = false;
     public GameObject gameOverPanel;
@@ -18,10 +17,12 @@ public class GameManager : MonoBehaviour
     public int numberOfBricks;
     public Transform[] levels;
     public int currentLevelIndex = 0;
+    public Image[] heartsImages;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
 
     void Start()
     {
-        livesText.text = "Lives: " + lives.ToString();
         scoreText.text = "Score: " + score.ToString();
         numberOfBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
     }
@@ -30,16 +31,33 @@ public class GameManager : MonoBehaviour
     public void UpdateLives(int changeInLives)
     {
         lives += changeInLives;
-
-        if(lives <= 0)
+        int heartsLimit = 3;
+        if(lives > heartsLimit)
+        {
+            lives = heartsLimit;
+            UpdateScore(100);
+        }
+        else if(lives <= 0)
         {
             lives = 0;
             GameOver();
         }
-        
-        livesText.text = "Lives: " + lives.ToString();
+        HeartsUpdate(lives);
+    }
 
-
+    private void HeartsUpdate(int lives)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if(i < lives)
+            {
+                heartsImages[i].sprite = fullHeart;
+            }
+            else
+            {
+                heartsImages[i].sprite = emptyHeart;
+            }
+        }
     }
 
     public void UpdateScore(int points)
