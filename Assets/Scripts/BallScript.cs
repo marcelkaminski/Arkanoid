@@ -34,7 +34,6 @@ public class BallScript : MonoBehaviour
         {
             SoundManagerScript.PlaySound("confirmSound");
             inPlay = true;
-            rb.AddForce(Vector2.up * speed);
         }
     }
 
@@ -81,11 +80,24 @@ public class BallScript : MonoBehaviour
         else if(other.transform.CompareTag("Paddle"))
         {
             SoundManagerScript.PlaySound("paddleHitSound");
+
+            rb.velocity = Vector2.zero;
+            float hitpoint = other.contacts[0].point.x;
+            float paddleCenter = other.gameObject.transform.position.x;
+            float difference = paddleCenter - hitpoint;
+            Debug.Log(hitpoint + paddleCenter + difference);
+            if(hitpoint < paddleCenter)
+            {
+                rb.AddForce(new Vector2(-(Mathf.Abs(difference * 200)), speed));
+            }
+            else
+            {
+                rb.AddForce(new Vector2(Mathf.Abs(difference * 200), speed));
+            }
         }
         else if(other.transform.CompareTag("Wall"))
         {
             SoundManagerScript.PlaySound("wallHitSound");
         }
     }
-
 }

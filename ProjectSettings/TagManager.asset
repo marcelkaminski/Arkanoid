@@ -9,6 +9,7 @@ TagManager:
   - ExtraLifePowerup
   - Paddle
   - Wall
+  - Ball
   layers:
   - Default
   - TransparentFX

@@ -8,12 +8,6 @@ public class PaddleScript : MonoBehaviour
     public float leftWall;
     public float rightWall;
     public GameManager gm;
-
-
-    private void Start()
-    {
-
-    }
     
     private void Update()
     {
