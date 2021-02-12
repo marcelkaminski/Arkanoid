@@ -32,6 +32,7 @@ public class BallScript : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && !inPlay)
         {
+            SoundManagerScript.PlaySound("confirmSound");
             inPlay = true;
             rb.AddForce(Vector2.up * speed);
         }
@@ -44,6 +45,8 @@ public class BallScript : MonoBehaviour
             rb.velocity = Vector2.zero;
             inPlay = false;
             gm.UpdateLives(-1);
+            
+            SoundManagerScript.PlaySound("deathSound");
         }
     }
 
@@ -51,6 +54,7 @@ public class BallScript : MonoBehaviour
     {
         if(other.transform.CompareTag("Brick"))
         {
+            SoundManagerScript.PlaySound("brickHitSound");
             BrickScript brickScript = other.gameObject.GetComponent<BrickScript>();
             
             if(brickScript.hitsToBreak > 1)
@@ -73,6 +77,14 @@ public class BallScript : MonoBehaviour
             gm.UpdateNumberOfBricks();
             Destroy(other.gameObject);
             }
+        }
+        else if(other.transform.CompareTag("Paddle"))
+        {
+            SoundManagerScript.PlaySound("paddleHitSound");
+        }
+        else if(other.transform.CompareTag("Wall"))
+        {
+            SoundManagerScript.PlaySound("wallHitSound");
         }
     }
 

@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     void LoadLevel()
     {
+        SoundManagerScript.PlaySound("loadingSound");        
         currentLevelIndex++;
         Instantiate(levels[currentLevelIndex], Vector2.zero, Quaternion.identity);
         numberOfBricks = GameObject.FindGameObjectsWithTag("Brick").Length;

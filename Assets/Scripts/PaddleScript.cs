@@ -48,6 +48,7 @@ public class PaddleScript : MonoBehaviour
     {
         if(other.CompareTag("ExtraLifePowerup"))
         {
+            SoundManagerScript.PlaySound("powerupSound");
             gm.UpdateLives(1);
             Destroy(other.gameObject);
         }
