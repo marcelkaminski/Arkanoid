@@ -6,12 +6,19 @@ public class BrickScript : MonoBehaviour
 {
     public int points;
     public int hitsToBreak;
-    public Sprite hitSprite;
+    public Sprite secondSprite;
+    public Sprite thirdSprite;
 
     public void BreakBrick()
     {
         hitsToBreak--;
-        GetComponent<SpriteRenderer> ().sprite = hitSprite;
+        if(hitsToBreak == 1)
+        {
+            GetComponent<SpriteRenderer> ().sprite = secondSprite;
+        }
+        else if(hitsToBreak == 2)
+        {
+            GetComponent<SpriteRenderer> ().sprite =thirdSprite;
+        }
     }
-
 }

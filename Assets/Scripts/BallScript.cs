@@ -74,15 +74,15 @@ public class BallScript : MonoBehaviour
             else
             {
             int randChance = Random.Range(1, 101);
-            if(randChance < 20)
+            if(randChance < 15)
             {
                 Instantiate(extraLifePowerup, other.transform.position, other.transform.rotation);
             }
-            else if(randChance < 40)
+            else if(randChance < 30)
             {
                 Instantiate(extendPowerup, other.transform.position, other.transform.rotation);
             }
-            else if(randChance < 60)
+            else if(randChance < 45)
             {
                 Instantiate(shrinkPowerup, other.transform.position, other.transform.rotation);
             }

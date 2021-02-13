@@ -38,8 +38,6 @@ public class PaddleScript : MonoBehaviour
     private void PaddleCollisionDetect()
     {
         halfOfPaddle = boxCol.size.x / 2;
-        Debug.Log(transform.position.x);
-        Debug.Log(halfOfPaddle);
         if((transform.position.x - halfOfPaddle) < leftWall)
         {
             transform.position = new Vector2((leftWall + halfOfPaddle), transform.position.y);
