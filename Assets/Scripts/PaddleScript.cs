@@ -10,13 +10,14 @@ public class PaddleScript : MonoBehaviour
     public GameManager gm;
     private SpriteRenderer sr;
     private BoxCollider2D boxCol;
+    private float halfOfPaddle;
     
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         boxCol = GetComponent<BoxCollider2D>();
     }
-    
+
     private void Update()
     {
         if(gm.gameOver)
@@ -36,13 +37,16 @@ public class PaddleScript : MonoBehaviour
 
     private void PaddleCollisionDetect()
     {
-        if(transform.position.x < leftWall)
+        halfOfPaddle = boxCol.size.x / 2;
+        Debug.Log(transform.position.x);
+        Debug.Log(halfOfPaddle);
+        if((transform.position.x - halfOfPaddle) < leftWall)
         {
-            transform.position = new Vector2(leftWall, transform.position.y);
+            transform.position = new Vector2((leftWall + halfOfPaddle), transform.position.y);
         }
-        if(transform.position.x > rightWall)
+        if((transform.position.x + halfOfPaddle) > rightWall)
         {
-            transform.position = new Vector2(rightWall, transform.position.y);
+            transform.position = new Vector2((rightWall - halfOfPaddle), transform.position.y);
         }
     }
 
@@ -52,18 +56,21 @@ public class PaddleScript : MonoBehaviour
         {
             SoundManagerScript.PlaySound("powerupSound");
             gm.UpdateLives(1);
+            gm.UpdateScore(50);
             Destroy(other.gameObject);
         }
         else if(other.CompareTag("ExtendPowerup"))
         {
             SoundManagerScript.PlaySound("powerupSound");
             StartCoroutine(ExtendPaddle());
+            gm.UpdateScore(50);
             Destroy(other.gameObject);
         }
         else if(other.CompareTag("ShrinkPowerup"))
         {
             SoundManagerScript.PlaySound("powerupSound");
             StartCoroutine(ShrinkPaddle());
+            gm.UpdateScore(50);
             Destroy(other.gameObject);
         }
 

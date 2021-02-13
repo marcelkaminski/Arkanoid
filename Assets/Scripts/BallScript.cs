@@ -29,14 +29,22 @@ public class BallScript : MonoBehaviour
 
         if(!inPlay)
         {
-            transform.position = paddle.position;
+            ResetBallPosition();
         }
 
         if(Input.GetButtonDown("Jump") && !inPlay)
         {
             SoundManagerScript.PlaySound("confirmSound");
             inPlay = true;
+            rb.AddForce(new Vector2(0,speed));
         }
+    }
+
+    public void ResetBallPosition()
+    {
+        inPlay = false;
+        rb.velocity = Vector2.zero;
+        transform.position = paddle.position;
     }
 
     void OnTriggerEnter2D(Collider2D other)

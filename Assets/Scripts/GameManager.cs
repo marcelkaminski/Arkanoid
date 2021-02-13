@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Image[] heartsImages;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public BallScript BS;
 
     void Start()
     {
@@ -71,24 +72,24 @@ public class GameManager : MonoBehaviour
         numberOfBricks--;
         if(numberOfBricks <= 0)
         {
+            BS.ResetBallPosition();
             if(currentLevelIndex >= levels.Length - 1)
             {
                 GameOver();
             }
             else
             {
+                SoundManagerScript.PlaySound("loadingSound");   
                 loadLevelPanel.SetActive(true);
                 loadLevelPanel.GetComponentInChildren<Text>().text = "Loading Level " + (currentLevelIndex + 2);
                 gameOver = true;
-                Invoke("LoadLevel", 3f);
-
+                Invoke("LoadLevel", 2f);
             }
         }
     }
 
     void LoadLevel()
-    {
-        SoundManagerScript.PlaySound("loadingSound");        
+    {     
         currentLevelIndex++;
         Instantiate(levels[currentLevelIndex], Vector2.zero, Quaternion.identity);
         numberOfBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
