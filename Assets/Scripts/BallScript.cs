@@ -9,7 +9,9 @@ public class BallScript : MonoBehaviour
     public Transform paddle;
     public float speed;
     public Transform explosion;
-    public Transform powerup;
+    public Transform extraLifePowerup;
+    public Transform extendPowerup;
+    public Transform shrinkPowerup;
     public GameManager gm;
 
     void Start()
@@ -64,9 +66,17 @@ public class BallScript : MonoBehaviour
             else
             {
             int randChance = Random.Range(1, 101);
-            if(randChance < 50)
+            if(randChance < 20)
             {
-                Instantiate(powerup, other.transform.position, other.transform.rotation);
+                Instantiate(extraLifePowerup, other.transform.position, other.transform.rotation);
+            }
+            else if(randChance < 40)
+            {
+                Instantiate(extendPowerup, other.transform.position, other.transform.rotation);
+            }
+            else if(randChance < 60)
+            {
+                Instantiate(shrinkPowerup, other.transform.position, other.transform.rotation);
             }
 
             Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
@@ -85,7 +95,6 @@ public class BallScript : MonoBehaviour
             float hitpoint = other.contacts[0].point.x;
             float paddleCenter = other.gameObject.transform.position.x;
             float difference = paddleCenter - hitpoint;
-            Debug.Log(hitpoint + paddleCenter + difference);
             if(hitpoint < paddleCenter)
             {
                 rb.AddForce(new Vector2(-(Mathf.Abs(difference * 200)), speed));
